@@ -65,19 +65,25 @@
                                 <td>{{ $pro->brand_name }}</td>
                                 <td><span class="text-ellipsis">
                                 <?php
-                                    if ($pro ->product_status == 0) {
+                                    if ($pro -> product_status == 0) {
                                         echo '<a href="'. URL::to ('/unactive-product/'.$pro->product_id).'"> <span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>';
                                     } else {
                                         echo '<a href="'. URL::to ('/active-product/'.$pro->product_id).'"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>';
                                     }    
                                 ?>
                                     </span></td>
-                                <td><span class="text-ellipsis">5/11/2024</span></td>
+
+                                    <td>
+                                        <span class="text-ellipsis">
+                                            {{ \Carbon\Carbon::parse($pro->created_at)->format('d/m/Y') }}
+                                        </span>
+                                    </td>
+
                                 <td>
                                     <a href="{{ URL::to('/edit-product/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class="">
                                         <i class="fa fa-pencil-square-o text-success text-active"></i>
                                     </a>
-                                    <a onclick="return confirm('Bạn có chắc muốn xóa thư mục này không?')" href="{{ URL::to('/delete-product/'.$pro->brand_id) }}" class="active styling-edit" ui-toggle-class=""> 
+                                    <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="{{ URL::to('/delete-product/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class=""> 
                                         <i class="fa fa-times text-danger text"></i>
                                     </a>
                                 </td>

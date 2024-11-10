@@ -63,7 +63,11 @@
                                     }    
                                 ?>
                                     </span></td>
-                                <td><span class="text-ellipsis">5/11/2024</span></td>
+                                    <td>
+                                        <span class="text-ellipsis">
+                                            {{ \Carbon\Carbon::parse($brand_pro->created_at)->format('d/m/Y') }}
+                                        </span>
+                                    </td>
                                 <td>
                                     <a href="{{ URL::to('/edit-brand-product/'.$brand_pro->brand_id) }}" class="active styling-edit" ui-toggle-class="">
                                         <i class="fa fa-pencil-square-o text-success text-active"></i>

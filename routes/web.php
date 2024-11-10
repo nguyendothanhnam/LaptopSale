@@ -17,6 +17,9 @@ Route::get('/dashboard', [AdminController::class, 'show_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::post('/admin-dashboard', [AdminController::class, 'dashboard']);
 
+Route::get('/signup', [AdminController::class, 'signup'])->name('signup');
+Route::post('/register', [AdminController::class, 'register'])->name('register');
+
 //Category Product
 Route::get('/add-category-product', [CategoryProduct::class, 'add_category_product']);
 Route::get('/delete-category-product/{category_product_id}', [CategoryProduct::class, 'delete_category_product']);

@@ -55,15 +55,26 @@
                                 </td>
                                 <td>{{ $cate_pro->category_name }}</td>
                                 <td><span class="text-ellipsis">
-                                <?php
-                                    if ($cate_pro ->category_status == 0) {
-                                        echo '<a href="'. URL::to ('/unactive-category-product/'.$cate_pro->category_id).'"> <span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>';
+                                    <?php
+                                    if ($cate_pro->category_status == 0) {
+                                        echo '<a href="'. URL::to('/unactive-category-product/'.$cate_pro->category_id).'">
+                                                <span class="fa-thumbs-styling fa fa-thumbs-up"></span>
+                                              </a>';
                                     } else {
-                                        echo '<a href="'. URL::to ('/active-category-product/'.$cate_pro->category_id).'"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>';
+                                        echo '<a href="'. URL::to('/active-category-product/'.$cate_pro->category_id).'">
+                                                <span class="fa-thumbs-styling fa fa-thumbs-down"></span>
+                                              </a>';
                                     }    
                                 ?>
+                                
                                     </span></td>
-                                <td><span class="text-ellipsis">5/11/2024</span></td>
+                                    
+                                    <td>
+                                        <span class="text-ellipsis">
+                                            {{ \Carbon\Carbon::parse($cate_pro->created_at)->format('d/m/Y') }}
+                                        </span>
+                                    </td>
+
                                 <td>
                                     <a href="{{ URL::to('/edit-category-product/'.$cate_pro->category_id) }}" class="active styling-edit" ui-toggle-class="">
                                         <i class="fa fa-pencil-square-o text-success text-active"></i>
