@@ -7,17 +7,17 @@
                     Cập nhật sản phẩm
                 </header>
                 <?php
-                    $message = Session::get('message');
+                    $message = Session('message');
                     if ($message) {
                         echo '<span class="text-alert">' . $message . '</span>';
-                        Session::put('message', null);
+                        Session('message', null);
                     }
                     ?>
                 <div class="panel-body">
                     
                     <div class="position-center">
                         @foreach ($edit_product as $key => $pro )
-                        <form role="form" action="{{ URL::to('/update-product/'.$pro->product_id) }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ asset('/update-product/'.$pro->product_id) }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
@@ -33,7 +33,7 @@
                                 <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
                                 <input type="file" name="product_image" class="form-control"
                                     id="exampleInputEmail1" >
-                                    <img src="{{ URL::to('public/uploads/product/'.$pro->product_image) }}" height="100" width="100" alt="">
+                                    <img src="{{ asset('public/uploads/product/'.$pro->product_image) }}" height="100" width="100" alt="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mô tả sản phẩm</label>
@@ -72,8 +72,8 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Hiển thị sản phẩm</label>
                                 <select name="product_status" class="form-control input-sm m-bot15">
-                                    <option value="0">Ẩn</option>
-                                    <option value="1">Hiện</option>
+                                    <option value="1">Ẩn</option>
+                                    <option value="0">Hiện</option>
                                 </select>
                             </div>
                             <button type="submit" name="add_product" class="btn btn-info">Cập nhật sản phẩm</button>

@@ -7,16 +7,16 @@
                     Thêm sản phẩm
                 </header>
                 <?php
-                    $message = Session::get('message');
+                    $message = Session('message');
                     if ($message) {
                         echo '<span class="text-alert">' . $message . '</span>';
-                        Session::put('message', null);
+                        Session('message', null);
                     }
                     ?>
                 <div class="panel-body">
                     
                     <div class="position-center">
-                        <form role="form" action="{{ URL::to('/save-product') }}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{ asset('/save-product') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
@@ -62,8 +62,8 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Hiển thị sản phẩm</label>
                                 <select name="product_status" class="form-control input-sm m-bot15">
-                                    <option value="0">Ẩn</option>
-                                    <option value="1">Hiện</option>
+                                    <option value="1">Ẩn</option>
+                                    <option value="0">Hiện</option>
                                 </select>
                             </div>
                             <button type="submit" name="add_product" class="btn btn-info">Thêm sản phẩm</button>

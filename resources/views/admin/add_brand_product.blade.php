@@ -10,13 +10,13 @@
                     $message = Session::get('message');
                     if ($message) {
                         echo '<span class="text-alert">' . $message . '</span>';
-                        Session::put('message', null);
+                        Session('message', null);
                     }
                     ?>
                 <div class="panel-body">
                     
                     <div class="position-center">
-                        <form role="form" action="{{ URL::to('/save-brand-product') }}" method="post">
+                        <form role="form" action="{{ asset('/save-brand-product') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên thương hiệu</label>
@@ -31,8 +31,8 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Hiển thị</label>
                                 <select name="brand_product_status" class="form-control input-sm m-bot15">
-                                    <option value="0">Ẩn</option>
-                                    <option value="1">Hiện</option>
+                                    <option value="0">Hiện</option>
+                                    <option value="1">Ẩn</option>
                                 </select>
                             </div>
                             <button type="submit" name="add_brand_product" class="btn btn-info">Thêm thương hiệu</button>

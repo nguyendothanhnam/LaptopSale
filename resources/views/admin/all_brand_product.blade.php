@@ -32,7 +32,7 @@
                     $message = Session::get('message');
                     if ($message) {
                         echo '<span class="text-alert">' . $message . '</span>';
-                        Session::put('message', null);
+                        Session('message', null);
                     }
                     ?>
                     <thead>
@@ -57,9 +57,9 @@
                                 <td><span class="text-ellipsis">
                                 <?php
                                     if ($brand_pro ->brand_status == 0) {
-                                        echo '<a href="'. URL::to ('/unactive-brand-product/'.$brand_pro->brand_id).'"> <span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>';
+                                        echo '<a href="'. asset ('/unactive-brand-product/'.$brand_pro->brand_id).'"> <span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>';
                                     } else {
-                                        echo '<a href="'. URL::to ('/active-brand-product/'.$brand_pro->brand_id).'"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>';
+                                        echo '<a href="'. asset ('/active-brand-product/'.$brand_pro->brand_id).'"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>';
                                     }    
                                 ?>
                                     </span></td>
@@ -69,10 +69,10 @@
                                         </span>
                                     </td>
                                 <td>
-                                    <a href="{{ URL::to('/edit-brand-product/'.$brand_pro->brand_id) }}" class="active styling-edit" ui-toggle-class="">
+                                    <a href="{{ asset('/edit-brand-product/'.$brand_pro->brand_id) }}" class="active styling-edit" ui-toggle-class="">
                                         <i class="fa fa-pencil-square-o text-success text-active"></i>
                                     </a>
-                                    <a onclick="return confirm('Bạn có chắc muốn xóa thư mục này không?')" href="{{ URL::to('/delete-brand-product/'.$brand_pro->brand_id) }}" class="active styling-edit" ui-toggle-class=""> 
+                                    <a onclick="return confirm('Bạn có chắc muốn xóa thư mục này không?')" href="{{ asset('/delete-brand-product/'.$brand_pro->brand_id) }}" class="active styling-edit" ui-toggle-class=""> 
                                         <i class="fa fa-times text-danger text"></i>
                                     </a>
                                 </td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 //Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -60,3 +61,9 @@ Route::get('/active-product/{product_id}', [ProductController::class, 'active_pr
 
 Route::post('/save-product', [ProductController::class, 'save_product']);
 Route::post('/update-product/{product_id}', [ProductController::class, 'update_product']);
+
+//Cart
+Route::post('/save-cart', [CartController::class, 'save_cart']);
+Route::post('/update-cart-quantity', [CartController::class, 'update_cart_quantity']);
+Route::get('/show-cart', [CartController::class, 'show_cart']);
+Route::get('/delete-to-cart/{rowID}', [CartController::class, 'delete_to_cart']);

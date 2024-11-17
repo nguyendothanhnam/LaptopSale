@@ -29,10 +29,10 @@
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
                     <?php
-                    $message = Session::get('message');
+                    $message = Session('message');
                     if ($message) {
                         echo '<span class="text-alert">' . $message . '</span>';
-                        Session::put('message', null);
+                        Session('message', null);
                     }
                     ?>
                     <thead>
@@ -66,9 +66,9 @@
                                 <td><span class="text-ellipsis">
                                 <?php
                                     if ($pro -> product_status == 0) {
-                                        echo '<a href="'. URL::to ('/unactive-product/'.$pro->product_id).'"> <span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>';
+                                        echo '<a href="'. asset ('/unactive-product/'.$pro->product_id).'"> <span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>';
                                     } else {
-                                        echo '<a href="'. URL::to ('/active-product/'.$pro->product_id).'"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>';
+                                        echo '<a href="'. asset ('/active-product/'.$pro->product_id).'"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>';
                                     }    
                                 ?>
                                     </span></td>
@@ -80,10 +80,10 @@
                                     </td>
 
                                 <td>
-                                    <a href="{{ URL::to('/edit-product/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class="">
+                                    <a href="{{ asset('/edit-product/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class="">
                                         <i class="fa fa-pencil-square-o text-success text-active"></i>
                                     </a>
-                                    <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="{{ URL::to('/delete-product/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class=""> 
+                                    <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" href="{{ asset('/delete-product/'.$pro->product_id) }}" class="active styling-edit" ui-toggle-class=""> 
                                         <i class="fa fa-times text-danger text"></i>
                                     </a>
                                 </td>

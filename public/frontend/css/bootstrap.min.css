@@ -7408,3 +7408,9 @@ td.visible-print {
         display: none !important
     }
 }
+.truncate {
+    display: inline-block;
+    max-width: 200px;
+    white-space: normal; /* Cho phép xuống dòng */
+    word-wrap: break-word; /* Xuống dòng nếu không đủ chỗ */
+}
