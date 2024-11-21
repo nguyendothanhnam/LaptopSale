@@ -47,7 +47,9 @@ class CheckoutController extends Controller
     }
 
     public function payment(){
-        echo 'thanhcong';
+        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
+        return view('pages.checkout.payment')->with('category',$cate_product)->with('brand',$brand_product);
     }
 
     public function logout_checkout(Request $request){
