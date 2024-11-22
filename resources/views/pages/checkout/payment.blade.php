@@ -44,7 +44,7 @@
                                     <p>Web ID: 1089772</p>
                                 </td>
                                 <td class="cart_price">
-                                    <p>{{ number_format($v_content->price) . ' ' . 'VND' }}</p>
+                                    <p>{{ number_format($v_content->price) . ',' . 'VND' }}</p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -84,14 +84,15 @@
                 @csrf
                 <div class="payment-options">
                     <span>
-                        <label><input name="payment_option" value="ATM" type="checkbox"> Chuyển khoản</label>
+                        <label><input name="payment_option" value="1" type="checkbox"> Chuyển khoản</label>
                     </span>
                     <span>
-                        <label><input name="payment_option" value="tiền mặt" type="checkbox"> Tiền mặt</label>
+                        <label><input name="payment_option" value="2" type="checkbox"> Tiền mặt</label>
                     </span>
                     <span>
-                        <label><input name="payment_option" value="thẻ ghi nợ" type="checkbox"> Thẻ ghi nợ</label>
+                        <label><input name="payment_option" value="3" type="checkbox"> Thẻ ghi nợ</label>
                     </span>
+                    <input type="submit" style="margin-bottom: 17px" value="Đặt hàng" name="send_order_place" class="btn btn-primary btn-sm"> 
                 </div>
             </form>
         </div>
