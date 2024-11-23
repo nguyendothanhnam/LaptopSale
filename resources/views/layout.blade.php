@@ -4,8 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <!--Seo Meta-->
+    <meta name="description" content="{{ $meta_desc }}">
     <meta name="author" content="">
+    <meta name="keywords" content="{{ $meta_kewords }}">
+    <meta name="robots" content="INDEX,FOLLow">
+    <link rel="canonical" href="{{ $url_canonical }}">
+    <link rel="icon" type="image/x-icon" href="">
+
+    <meta property="og:image" content="{{$image_og}}">
+    <meta property="og:site_name" content="thiatv.com">
+    <meta property="og:description" content="{{$meta_desc}}">
+    <meta property="og:title" content="{{$meta_title}}">
+    <meta property="og:url" content="{{$url_canonical}}">
+    <meta property="og:type" content="website">
+    <!--Seo Meta-->
     <title>LapWibu</title>
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">

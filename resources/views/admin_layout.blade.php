@@ -156,6 +156,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="{{ asset('backend/js/scripts.js') }}"></script>
     <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+    <script src="{{ asset('backend/js/jquery.form-validator.min.js') }}"></script>
+    <script>
+        $.validate({
+            
+        })
+    </script>
+    <script>
+        document.querySelectorAll('.ckeditor').forEach((editorElement) => {
+            ClassicEditor
+                .create(editorElement)
+                .then(editor => {
+                    console.log('CKEditor 5 initialized!', editor);
+                })
+                .catch(error => {
+                    console.error('Error initializing CKEditor 5:', error);
+                });
+        });
+    </script>
+    
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
     <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
     <!-- morris JavaScript -->
