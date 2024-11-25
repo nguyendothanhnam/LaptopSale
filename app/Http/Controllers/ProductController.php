@@ -136,7 +136,7 @@ class ProductController extends Controller
     }
 
     //End admin page
-    public function details_product($product_id){
+    public function details_product(Request $request ,$product_id){
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
 
@@ -147,6 +147,11 @@ class ProductController extends Controller
 
         foreach($details_product as $key => $value)
             $category_id = $value->category_id;
+        //SEO
+        $meta_desc = $value -> category_desc;
+        $meta_keywords = $value ->meta_keywords;
+        $meta_title = $value -> category_name;
+        $url_canonical = $request->url();
         
 
         $related_product = DB::table('tbl_product')
@@ -158,7 +163,11 @@ class ProductController extends Controller
         return view('pages.sanpham.show_details')
         ->with('category',$cate_product)->with('brand',$brand_product)
         ->with('product_details',$details_product)
-        ->with('relate', $related_product);
+        ->with('relate', $related_product)
+        ->with('meta_desc', $meta_desc)
+        ->with('meta_keywords', $meta_keywords)
+        ->with('url_canonical', $url_canonical)
+        ->with('meta_title', $meta_title);
     }
 
 }

@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-sm-12 clearfix">
                     <div class="bill-to">
-                        <p>Điền thông tin gửi hàng</p>
+                        <p>Thông tin người nhận hàng</p>
                         <div class="form-one">
                             <form action="{{ URL::to('/save-checkout-customer') }}" method="POST">
                                 @csrf

@@ -83,3 +83,6 @@ Route::post('/save-checkout-customer',[CheckoutController::class,'save_checkout_
 //Order
 Route::get('/manage-order', [CheckoutController::class, 'manage_order']);
 Route::get('/view-order/{orderID}', [CheckoutController::class, 'view_order']);
+
+//Send email
+Route::get('send-mail', [HomeController::class,'send_mail']);

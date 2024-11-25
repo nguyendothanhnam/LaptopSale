@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 Liệt kê thương hiệu sản phẩm
             </div>
-            <div class="row w3-res-tb">
+            {{-- <div class="row w3-res-tb">
                 <div class="col-sm-5 m-b-xs">
                     <select class="input-sm form-control w-sm inline v-middle">
                         <option value="0">Bulk action</option>
@@ -25,7 +25,7 @@
                         </span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
                     <?php
@@ -44,6 +44,7 @@
                             </th>
                             <th>Tên thương hiệu</th>
                             <th>Hiển thị</th>
+                            <th>Từ khóa thương hiệu</th>
                             <th>Thời gian</th>
                             <th style="width:30px;"></th>
                         </tr>
@@ -63,6 +64,9 @@
                                     }    
                                 ?>
                                     </span></td>
+
+                                    <td>{!! $brand_pro->meta_keywords !!}</td>
+
                                     <td>
                                         <span class="text-ellipsis">
                                             {{ \Carbon\Carbon::parse($brand_pro->created_at)->format('d/m/Y') }}

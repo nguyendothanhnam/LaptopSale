@@ -20,16 +20,20 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu</label>
-                                    <input type="text" value="{{ $edit_value->brand_name }}"
+                                    <input type="text" value="{{ $edit_value->brand_name }}" data-validation="required"
                                         name="brand_product_name" class="brand_product_name" id="exampleInputEmail1"
                                         placeholder="Tên thương hiệu" data-validation="required">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả thương hiệu</label>
-                                    <textarea style="resize: none" rows="8" class="form-control" name="brand_product_desc"
-                                        id="exampleInputPassword1" placeholder="Mô tả thương hiệu" data-validation="required"></textarea>
+                                    <textarea style="resize: none" rows="8" class="form-control ckeditor" name="brand_product_desc" data-validation="required"
+                                        id="exampleInputPassword1" placeholder="Mô tả thương hiệu" data-validation="required">{{ $edit_value->brand_desc }}</textarea>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Từ khóa thương hiệu</label>
+                                    <textarea style="resize: none" rows="8" class="form-control ckeditor" name="brand_product_keywords" data-validation="required"
+                                        id="exampleInputPassword1" placeholder="Từ khóa thương hiệu"></textarea>
+                                </div>
                                 <button type="submit" name="update_brand_product" class="btn btn-info">Cập nhật thương hiệu</button>
                             </form>
                         </div>

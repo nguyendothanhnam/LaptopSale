@@ -8,13 +8,7 @@
 
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
-                    <?php
-                    $message = Session::get('message');
-                    if ($message) {
-                        echo '<span class="text-alert">' . $message . '</span>';
-                        Session('message', null);
-                    }
-                    ?>
+                    
                     <thead>
                         <tr>
                             <th>Tên khách hàng</th>
@@ -48,16 +42,10 @@
 
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
-                    <?php
-                    $message = Session::get('message');
-                    if ($message) {
-                        echo '<span class="text-alert">' . $message . '</span>';
-                        Session('message', null);
-                    }
-                    ?>
+                    
                     <thead>
                         <tr>
-                            <th>Tên người vận chuyển</th>
+                            <th>Tên người nhận hàng</th>
                             <th>Email</th>
                             <th>Địa chỉ</th>
                             <td>Số điện thoại</td>
@@ -90,13 +78,7 @@
 
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
-                    <?php
-                    $message = Session::get('message');
-                    if ($message) {
-                        echo '<span class="text-alert">' . $message . '</span>';
-                        Session('message', null);
-                    }
-                    ?>
+                    
                     <thead>
                         <tr>
                             <th>Tên sản phẩm</th>
