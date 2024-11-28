@@ -20,18 +20,27 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên danh mục</label>
-                                <input type="text" name="category_product_name" class="form-control" data-validation="required"
-                                    id="exampleInputEmail1" placeholder="Tên danh mục">
+                                <input type="text" name="category_product_name" class="form-control"
+                                    value="{{ old('category_product_name') }}" placeholder="Tên danh mục">
+                                @error('category_product_name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Mô tả danh mục</label>
                                 <textarea style="resize: none" rows="8" class="form-control ckeditor" name="category_product_desc"
-                                data-validation="required" id="exampleInputPassword1" placeholder="Mô tả danh mục"></textarea>
+                                    placeholder="Mô tả danh mục">{{ old('category_product_desc') }}</textarea>
+                                @error('category_product_desc')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Từ khóa danh mục</label>
                                 <textarea style="resize: none" rows="8" class="form-control ckeditor" name="category_product_keywords"
-                                data-validation="required" id="exampleInputPassword1" placeholder="Từ khóa danh mục"></textarea>
+                                    placeholder="Từ khóa danh mục">{{ old('category_product_keywords') }}</textarea>
+                                @error('category_product_keywords')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Hiển thị</label>

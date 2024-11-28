@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Seo Meta-->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="{{ $meta_desc }}">
+    <meta name="author" content="{{ $meta_keywords }}">
+    <meta name="keywords" content="INDEX,FOLLOW">
     <meta name="robots" content="INDEX,FOLLow">
-    <link rel="canonical" href="">
+    <link rel="canonical" href="{{ $url_canonical }}">
     <link rel="icon" type="image/x-icon" href="">
 
     {{-- <meta property="og:image" content="{{$image_og}}">
@@ -19,7 +19,7 @@
     <meta property="og:url" content="{{$url_canonical}}">
     <meta property="og:type" content="website"> --}}
     <!--Seo Meta-->
-    <title>LAPWIBU</title>
+    <title>{{ $meta_title }}</title>
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/prettyPhoto.css') }}" rel="styles  heet">
@@ -27,6 +27,7 @@
     <link href="{{ asset('frontend/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -42,7 +43,7 @@
 </head><!--/head-->
 
 <body>
-    
+
     <header id="header"><!--header-->
         <div class="header_top"><!--header_top-->
             <div class="container">
@@ -113,41 +114,47 @@
                                     $shipping_id = Session::get('shipping_id');
                                     if ($customer_id != NULL && $shipping_id == NULL) {
                                     ?>
-                                    <li>
-                                        <a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-                                    </li>
-                                    <?php
+                                <li>
+                                    <a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                        toán</a>
+                                </li>
+                                <?php
                                     } elseif($customer_id != NULL && $shipping_id != NULL) {
                                     ?>
-                                    <li>
-                                        <a href="{{ URL::to('/payment') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-                                    </li>
-                                    <?php    
+                                <li>
+                                    <a href="{{ URL::to('/payment') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                        toán</a>
+                                </li>
+                                <?php    
                                     } else {
                                     ?>
-                                    <li>
-                                        <a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-                                    </li>
-                                    <?php
+                                <li>
+                                    <a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                        toán</a>
+                                </li>
+                                <?php
                                     }
                                 ?>
-                                
-                                <li><a href="{{ URL::to('/show-cart') }}"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a></li>
-                                
+
+                                <li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i>Giỏ
+                                        hàng</a></li>
+
                                 <?php 
                                     $customer_id = Session::get('customer_id');
                                     if ($customer_id != NULL) {
                                     ?>
-                                    <li>
-                                        <a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-unlock"></i> Đăng xuất</a>                                        
-                                    </li>
-                                    <?php    
+                                <li>
+                                    <a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-unlock"></i> Đăng
+                                        xuất</a>
+                                </li>
+                                <?php    
                                     } else {
                                     ?>
-                                    <li>
-                                        <a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a>
-                                    </li>
-                                    <?php
+                                <li>
+                                    <a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng
+                                        nhập</a>
+                                </li>
+                                <?php
                                     }
                                 ?>
                             </ul>
@@ -191,7 +198,8 @@
                             @csrf
                             <div class="search_box pull-right">
                                 <input type="text" placeholder="Search" />
-                                <input type="submit" name="search_items" class="btn btn-success btn-sm" value="Tìm kiếm">
+                                <input type="submit" name="search_items" class="btn btn-success btn-sm"
+                                    value="Tìm kiếm">
                             </div>
                         </form>
                     </div>
@@ -221,8 +229,7 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="frontend/image/girl1.jpg" class="girl img-responsive"
-                                        alt="" />
+                                    <img src="frontend/image/girl1.jpg" class="girl img-responsive" alt="" />
                                     <img src="frontend/image/pricing.png" class="pricing" alt="" />
                                 </div>
                             </div>
@@ -235,8 +242,7 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="frontend/image/girl2.jpg" class="girl img-responsive"
-                                        alt="" />
+                                    <img src="frontend/image/girl2.jpg" class="girl img-responsive" alt="" />
                                     <img src="frontend/image/pricing.png" class="pricing" alt="" />
                                 </div>
                             </div>
@@ -250,8 +256,7 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="frontend/image/girl3.jpg" class="girl img-responsive"
-                                        alt="" />
+                                    <img src="frontend/image/girl3.jpg" class="girl img-responsive" alt="" />
                                     <img src="frontend/image/pricing.png" class="pricing" alt="" />
                                 </div>
                             </div>
@@ -296,8 +301,8 @@
                                 <ul class="nav nav-pills nav-stacked">
                                     @foreach ($brand as $key => $brand)
                                         <li>
-                                            <a href="{{ URL::to('/thuong-hieu-san-pham/' . $brand->brand_id) }}"> <span
-                                                    class="pull-right">(1)</span>{{ $brand->brand_name }}</a>
+                                            <a href="{{ URL::to('/thuong-hieu-san-pham/' . $brand->brand_id) }}">
+                                                <span class="pull-right">(1)</span>{{ $brand->brand_name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -474,7 +479,8 @@
 
     </footer><!--/Footer-->
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script> --}}
 
     <script src="{{ asset('frontend/js/jquery.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
@@ -482,6 +488,44 @@
     <script src="{{ asset('frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.add-to-cart').click(function(){
+                var id = $(this).data('id_product');
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{url('/add-cart-ajax')}}",
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token},
+                    success:function(data){
+
+                        alert(data);
+                        swal({
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{url('/gio-hang')}}";
+                            });
+
+                    }
+
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

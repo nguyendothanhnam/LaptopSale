@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
@@ -20,10 +21,19 @@ class CheckoutController extends Controller
         }
     }
 
-    public function login_checkout(){
+    public function login_checkout(Request $request){
+            //SEO
+            $meta_desc ="Trang đăng nhập khách hàng";
+            $meta_keywords ="Login customer";
+            $meta_title = "Đăng nhập thanh toán";
+            $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
-        return view('pages.checkout.login_checkout')->with('category',$cate_product)->with('brand',$brand_product);
+        return view('pages.checkout.login_checkout')
+        ->with('category',$cate_product)
+        ->with('brand',$brand_product)
+        ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));;
     }
     public function add_customer(Request $request){
         $data = array();
@@ -38,10 +48,19 @@ class CheckoutController extends Controller
         return Redirect::to('/checkout');
     }
 
-    public function checkout(){
+    public function checkout(Request $request){
+        //SEO
+        $meta_desc ="Trang thanh toán giỏ hàng";
+        $meta_keywords ="Thanh toán giỏ hàng";
+        $meta_title = "Trang thanh toán giỏ hàng";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
-        return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product);
+        return view('pages.checkout.show_checkout')
+        ->with('category',$cate_product)
+        ->with('brand',$brand_product)
+        ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));;
     }
 
     public function save_checkout_customer(Request $request){
@@ -57,14 +76,29 @@ class CheckoutController extends Controller
         return Redirect::to('/payment');
     }
 
-    public function payment(){
+    public function payment(Request $request){
+        //SEO
+        $meta_desc ="Trang thanh toán giỏ hàng";
+        $meta_keywords ="Thanh toán giỏ hàng";
+        $meta_title = "Trang thanh toán giỏ hàng";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
-        return view('pages.checkout.payment')->with('category',$cate_product)->with('brand',$brand_product);
+        return view('pages.checkout.payment')
+        ->with('category',$cate_product)
+        ->with('brand',$brand_product)
+        ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));;
     }
 
     public function order_place(Request $request){
         
+         //SEO
+         $meta_desc = "Giỏ hàng của bạn";
+         $meta_keywords = "Giỏ hàng";
+         $meta_title = "Giỏ hàng của bạn";
+         $url_canonical = $request->url();
+
         //insert payment method
         $data = array();
         $data['payment_method'] = $request->payment_option;
@@ -76,9 +110,10 @@ class CheckoutController extends Controller
         $order_data['customer_id'] = Session::get('customer_id');
         $order_data['shipping_id'] = Session::get('shipping_id');
         $order_data['payment_id'] = $payment_id;
-        $order_data['order_total'] = Cart::total();
+        $order_data['order_total'] = Cart::subtotal();
         $order_data['order_status'] = 'Đang chờ xử lý';
         $order_id = DB::table('tbl_order')->insertGetId($order_data);
+        $body_massage = 'mã đơn hàng  '.$order_id.'tổng tiền: '.$order_data['order_total']; 
 
         //insert order detail
         foreach(Cart::content() as $v_content){
@@ -95,9 +130,20 @@ class CheckoutController extends Controller
             echo 'Thanh toán bằng thẻ ATM';
         }elseif($data['payment_method'] == 2){
             Cart::destroy();
-            $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
-            $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
-            return view('pages.checkout.handcash')->with('category',$cate_product)->with('brand',$brand_product);
+            $cate_product = DB::table('tbl_category_product')
+            ->where('category_status','0')
+            ->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand')
+            ->where('brand_status','0')
+            ->orderby('brand_id', 'desc')->get();
+
+            // Send email to customer
+            app('App\Http\Controllers\HomeController')->send_mail();
+            
+            return view('pages.checkout.handcash')
+            ->with('category',$cate_product)
+            ->with('brand',$brand_product)
+            ->with(compact('meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));;
         }else{
             echo 'Thanh toán bằng thẻ ghi nợ';
         }

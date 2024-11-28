@@ -948,7 +948,8 @@ h2.title {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  width: 80%;
 }
 
 .add-to-cart:hover {
@@ -2520,4 +2521,13 @@ h2.title {
   color: #FE980F;
 }
 
-
+a.btn.btn-default.add-to-cart-btn {
+  background: #F5F5ED;
+  border: 0 none;
+  border-radius: 0;
+  color: #696763;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 10px;
+  width: 80%;
+}

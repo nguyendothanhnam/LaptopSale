@@ -52,7 +52,7 @@ class HomeController extends Controller
         $data = array("name"=>"Mail từ tài khoản khách hàng","body"=>"Mail gửi về vấn đề sản phẩm");
         Mail::send('pages.send_mail', $data,function($message) use ($to_name, $to_email){
             $message->to($to_email)->subject("Quên mật khẩu");
-            $message->from($to_email,$to_name);
+            $message->from('namndt.23it@vku.udn.vn',$to_name);
         });
         return redirect('/')->with('message','');
     }

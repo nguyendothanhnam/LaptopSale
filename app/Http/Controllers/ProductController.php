@@ -147,11 +147,11 @@ class ProductController extends Controller
 
         foreach($details_product as $key => $value)
             $category_id = $value->category_id;
-        //SEO
-        $meta_desc = $value -> category_desc;
-        $meta_keywords = $value ->meta_keywords;
-        $meta_title = $value -> category_name;
-        $url_canonical = $request->url();
+            //SEO
+            $meta_desc = $value -> category_desc;
+            $meta_keywords = $value ->meta_keywords;
+            $meta_title = $value -> category_name;
+            $url_canonical = $request->url();
         
 
         $related_product = DB::table('tbl_product')

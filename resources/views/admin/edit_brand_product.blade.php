@@ -32,7 +32,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Từ khóa thương hiệu</label>
                                     <textarea style="resize: none" rows="8" class="form-control ckeditor" name="brand_product_keywords" data-validation="required"
-                                        id="exampleInputPassword1" placeholder="Từ khóa thương hiệu"></textarea>
+                                        id="exampleInputPassword1" placeholder="Từ khóa thương hiệu">{{ $edit_value->meta_keywords }}</textarea>
                                 </div>
                                 <button type="submit" name="update_brand_product" class="btn btn-info">Cập nhật thương hiệu</button>
                             </form>

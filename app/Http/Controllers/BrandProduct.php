@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Brand;
+use Mews\Purifier\Facades\Purifier;
 // session_start();
 
 class BrandProduct extends Controller
@@ -33,14 +35,43 @@ class BrandProduct extends Controller
     public function save_brand_product(Request $request)
     {
         $this -> AuthLogin();
-        $data = array();
-        $data['brand_name'] = $request->brand_product_name;
-        $data['brand_desc'] = $request->brand_product_desc;
-        $data['brand_status'] = $request->brand_product_status;
-        $data['meta_keywords'] = $request->brand_product_keywords;
-        DB::table('tbl_brand')->insert($data);
-        Session::put('message', 'Thêm thương hiệu sản phẩm thành công');
-        return Redirect::to('/add-brand-product');
+        // $data = array();
+        // $data['brand_name'] = $request->brand_product_name;
+        // $data['brand_desc'] = $request->brand_product_desc;
+        // $data['brand_status'] = $request->brand_product_status;
+        // $data['meta_keywords'] = $request->brand_product_keywords;
+        // DB::table('tbl_brand')->insert($data);
+        // Session::put('message', 'Thêm thương hiệu sản phẩm thành công');
+        // return Redirect::to('/add-brand-product');
+
+        // Xác thực dữ liệu
+        $validatedData = $request->validate([
+            'brand_product_name' => 'required|string|max:255',
+            'brand_product_desc' => 'required|string|min:10',
+            'brand_product_keywords' => 'required|string|min:5',
+            'brand_product_status' => 'required|in:0,1',
+        ], [
+            'brand_product_name.required' => 'Tên thương hiệu không được để trống.',
+            'brand_product_desc.required' => 'Mô tả thương hiệu không được để trống.',
+            'brand_product_keywords.required' => 'Từ khóa thương hiệu không được để trống.',
+            'brand_product_status.required' => 'Trạng thái hiển thị là bắt buộc.',
+        ]);
+
+        // Nếu cần, làm sạch dữ liệu (dùng Purifier hoặc strip_tags)
+        $brand_product_desc = Purifier::clean($validatedData['brand_product_desc']); // Sử dụng Purifier nếu cần
+        $brand_product_keywords = Purifier::clean($validatedData['brand_product_keywords']); // Làm sạch từ khóa
+
+        // Lưu vào database
+        $brand = new Brand(); // Tạo instance của model
+        $brand->brand_name = $validatedData['brand_product_name'];
+        $brand->brand_desc = $brand_product_desc;
+        $brand->brand_keywords = $brand_product_keywords;
+        $brand->brand_status = $validatedData['brand_product_status'];
+        $brand->save();
+
+        // Thông báo thành công
+        Session::flash('message', 'Thêm thương hiệu sản phẩm thành công');
+        return Redirect::to('/add-brand-product'); // Redirect tới trang thêm thương hiệu
     }
     public function unactive_brand_product($brand_product_id)
     {

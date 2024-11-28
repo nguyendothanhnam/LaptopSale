@@ -15,7 +15,7 @@
                                 alt="" />
                             <h2>{{ number_format((float) $product->product_price) . ' ' . 'VND' }}</h2>
                             <p>{{ $product->product_name }}</p>
-                            <a href="#" class="btn btn-default add-to-cart">
+                            <a href="{{ URL::to('/gio-hang') }}" class="btn btn-default add-to-cart">
                                 <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
                         </div>
 
