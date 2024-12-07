@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Category;
 // session_start();
 
 class ProductController extends Controller
@@ -22,7 +23,8 @@ class ProductController extends Controller
     public function add_product()
     {
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+        // $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+        $cate_product = Category::orderBy('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
 
         return view('admin.add_product')->with('cate_product', $cate_product)->with('brand_product', $brand_product);
@@ -31,10 +33,16 @@ class ProductController extends Controller
     public function all_product()
     {
         $this->AuthLogin();
+        // $all_product = DB::table('tbl_product')
+        //     ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        //     ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        //     ->orderBy('tbl_product.product_id', 'desc')->get();
         $all_product = DB::table('tbl_product')
-            ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-            ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-            ->orderBy('tbl_product.product_id', 'desc')->get();
+    ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
+    ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+    ->orderBy('tbl_product.product_id', 'desc')
+    ->paginate(10); // Thêm phân trang
+
         $manager_product = view('admin.all_product')->with('all_product', $all_product);
         return view('admin_layout')->with('admin.all_product', $manager_product);
     }
@@ -50,7 +58,7 @@ class ProductController extends Controller
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $data['product_status'] = $request->product_status;
-        $date['product_image'] = $request->product_status;
+        $data['product_image'] = $request->product_status;
 
         $get_image = $request->file('product_image');
         if ($get_image) {

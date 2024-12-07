@@ -113,7 +113,7 @@ class CheckoutController extends Controller
         $order_data['order_total'] = Cart::subtotal();
         $order_data['order_status'] = 'Đang chờ xử lý';
         $order_id = DB::table('tbl_order')->insertGetId($order_data);
-        $body_massage = 'mã đơn hàng  '.$order_id.'tổng tiền: '.$order_data['order_total']; 
+        // $body_massage = 'mã đơn hàng  '.$order_id.'tổng tiền: '.$order_data['order_total']; 
 
         //insert order detail
         foreach(Cart::content() as $v_content){

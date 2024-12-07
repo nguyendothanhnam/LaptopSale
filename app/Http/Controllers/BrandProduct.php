@@ -65,7 +65,7 @@ class BrandProduct extends Controller
         $brand = new Brand(); // Tạo instance của model
         $brand->brand_name = $validatedData['brand_product_name'];
         $brand->brand_desc = $brand_product_desc;
-        $brand->brand_keywords = $brand_product_keywords;
+        $brand->meta_keywords = $brand_product_keywords;
         $brand->brand_status = $validatedData['brand_product_status'];
         $brand->save();
 

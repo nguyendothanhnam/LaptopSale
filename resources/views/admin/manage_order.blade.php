@@ -1,4 +1,4 @@
-@extends('admin_layout')
+{{-- @extends('admin_layout')
 @section('admin_content')
     <div class="table-agile-info">
         <div class="panel panel-default">
@@ -66,7 +66,7 @@
 
                                 <td>
                                     <a href="{{ asset('/view-order/'.$order->order_id) }}" class="active styling-edit" ui-toggle-class="">
-                                        <i class="fa fa-pencil-square-o text-success text-active"></i>
+                                        <i class="fa fa-eye text-success text-active"></i>
                                     </a>
                                     <a onclick="return confirm('Bạn có chắc muốn xóa đơn hàng này không?')" href="{{ asset('/delete-order/'.$order->order_id) }}" class="active styling-edit" ui-toggle-class=""> 
                                         <i class="fa fa-times text-danger text"></i>
@@ -97,4 +97,4 @@
             </footer>
         </div>
     </div>
-@endsection
+@endsection --}}

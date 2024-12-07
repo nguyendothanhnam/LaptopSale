@@ -7,24 +7,21 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <form action="">
+                             <form>
                                 @csrf
-                                <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
-                                <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
-                                <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
+                                <input type="hidden" class="cart_product_id_{{ $product ->product_id }}" value="{{ $product -> product_id }}">
+                                <input type="hidden" class="cart_product_name_{{ $product ->product_id }}" value="{{ $product -> product_name }}">
+                                <input type="hidden" class="cart_product_image_{{ $product ->product_id }}" value="{{ $product -> product_image }}">
+                                <input type="hidden" class="cart_product_price_{{ $product ->product_id }}" value="{{ $product -> product_price }}">
+                                <input type="hidden" class="cart_product_qty_{{ $product ->product_id }}" value="1">
                                 
+                                <a href="{{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}">
                                 <img src="{{ asset('public/uploads/product/' . $product->product_image) }}" height="200px" alt="" />
                                 <h2>{{ number_format((float) $product->product_price) . ' ' . 'VND' }}</h2>
                                 <p>{{ $product->product_name }}</p>
-                                <a href="{{ URL::to('/chi-tiet-san-pham/' . $product->product_id) }}"
-                                    class="btn btn-default add-to-cart-btn">
-                                    <i class="fa fa-info-circle"></i>Chi tiết sản phẩm</a>
-                                <a href="javascript:void(0)" class="btn btn-default add-to-cart" name="add-to-cart" data-id_product="{{$product->product_id}}">
-                                    <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                {{-- <button type="button" class=" btn btn-default add-to-cart " 
-                                name="add-to-cart" data-id_product="{{$product->product_id}}">Thêm giỏ hàng</button> --}}
+                                </a>
+                                <button type="button" class=" btn btn-default add-to-cart " data-id_product="{{ $product ->product_id }}"
+                                 name="add-to-cart" >Thêm giỏ hàng</button>
                             </form>
                         </div>
 
@@ -38,5 +35,18 @@
                 </div>
             </div>
         @endforeach
+        
     </div><!--features_items-->
+    <footer>
+        <div class="row">
+            <div class="col-sm-5 text-center">
+                <small class="text-muted inline m-t-sm m-b-sm"></small>
+            </div>
+            <div class="col-sm-7 text-right text-center-xs">
+                <ul class="pagination pagination-sm m-t-none m-b-none">
+                    <li>{{ $all_product->links() }}</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 @endsection

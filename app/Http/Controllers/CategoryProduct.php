@@ -120,21 +120,31 @@ class CategoryProduct extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
         $category_by_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id',$category_id)->get();
         
-        if (!empty($category_by_id) && is_array($category_by_id)) {
-            foreach ($category_by_id as $key => $val) {
-                // SEO
-                $meta_desc = $val->category_desc ?? '';
-                $meta_keywords = $val->meta_keywords ?? '';
-                $meta_title = $val->category_name ?? '';
-                $url_canonical = $request->url();
-                // SEO
-            }
-        } else {
-            $meta_desc = '';
-            $meta_keywords = '';
-            $meta_title = 'Default Title';
+        $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get(); 
+
+        foreach($category_by_id as $key =>$val)
+            //SEO
+            $meta_desc = $val -> category_desc;
+            $meta_keywords = $val ->meta_keywords;
+            $meta_title = $val -> category_name;
             $url_canonical = $request->url();
-        }
+            //Seo
+
+        // if (!empty($category_by_id) && is_array($category_by_id)) {
+        //     foreach ($category_by_id as $key => $val) {
+        //         // SEO
+        //         $meta_desc = $val->category_desc ?? '';
+        //         $meta_keywords = $val->meta_keywords ?? '';
+        //         $meta_title = $val->category_name ?? '';
+        //         $url_canonical = $request->url();
+        //         // SEO
+        //     }
+        // } else {
+        //     $meta_desc = '';
+        //     $meta_keywords = '';
+        //     $meta_title = 'Default Title';
+        //     $url_canonical = $request->url();
+        // }
         
 
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
